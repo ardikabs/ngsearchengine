@@ -21,7 +21,7 @@ export class SpotifyService{
         // let params : URLSearchParams = new URLSearchParams();
         // params.set('grant_type' , 'client_credentials');
         // let body = params.toString();
-         var mainUrl = 'https://ngspotify-wisperlabs.herokuapp.com/getToken';
+         var mainUrl = 'https://ngspotify-wisperlabs.herokuapp.com/api/getToken';
          
          return this._http.get(mainUrl)
             .map((res:Response) =>res.json());
