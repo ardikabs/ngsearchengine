@@ -17,7 +17,6 @@ export class SpotifyService{
     constructor(private _http:Http){
 
     }
-
     getToken(){
         // let params : URLSearchParams = new URLSearchParams();
         // params.set('grant_type' , 'client_credentials');
@@ -25,8 +24,13 @@ export class SpotifyService{
          var params = ('grant_type=client_credentials');
  
          var headers = new Headers();
+         headers.append('Access-Control-Allow-Origin','*');
+         headers.append('Access-Control-Allow-Methods','POST,GET');
+         headers.append('Access-Control-Request-Headers','Content-Type, Authorization');
+         headers.append('Access-Control-Allow-Credentials', 'true');
+         
         //  headers.append( 'Authorization', 'Basic ' + this.encoded);
-        headers.append( 'Authorization', 'Basic ' + this.encoded);
+         headers.append( 'Authorization', 'Basic Y2E4ZDVlNjBmNzg3NGE3NmI4NDk3OTUzYmYxNmEwYTc6ZjNlNGIwZDgxOTQ0NGRlNjlhNDc4OWZmMjkyOTNjNDY=');       
          headers.append( 'Content-Type' , 'application/x-www-form-urlencoded');
  
          return this._http.post('https://accounts.spotify.com/api/token', params , {headers : headers} )
