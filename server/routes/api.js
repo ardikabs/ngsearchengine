@@ -9,7 +9,7 @@ router.get('/',function(req,res){
     res.send('API Works');
 });
 
-router.post('/access_token',function(req,res,next){
+router.get('/access_token',function(req,res,next){
     var client_id ='ca8d5e60f7874a76b8497953bf16a0a7';
     var client_secret ='f3e4b0d819444de69a4789ff29293c46';
     var authOptions = {
@@ -19,12 +19,12 @@ router.post('/access_token',function(req,res,next){
             'Content-Type' : 'application/x-www-form-urlencoded'
         },
         form: {
-            grant_type: 'client_credentials'
+            'grant_type': 'client_credentials'
           },
         json: true
     };
 
-    request(authOptions).pipe(res);
+    request.post(authOptions).pipe(res);
     console.log(res);    
     // request.post(authOptions, function(error, response, body){
     //     console.log("Sedang REQUEST ");        
