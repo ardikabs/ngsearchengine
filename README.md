@@ -7,4 +7,5 @@ Generated with Angular CLI version 1.4.2 and Angular 4 version 4.3.6
 
 ## Usage
 npm install ( to install all dependency )
+
 npm start ( to start the ngSpotify Application )
