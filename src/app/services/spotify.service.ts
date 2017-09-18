@@ -27,8 +27,14 @@ export class SpotifyService{
          headers.append( 'Authorization', 'Basic ' + this.encoded);
          headers.append( 'Content-Type' , 'application/x-www-form-urlencoded');
  
+        //  res.headers.append("Access-Control-Allow-Origin", "*");
+        //  res.headers.append("Access-Control-Allow-Methods", "POST,PUT,DELETE,OPTIONS");
+        //  res.headers.append("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");    
+        //  res.headers.append("Access-Control-Allow-Credentials", "true");
+
+         console.log(this.encoded)
          return this._http.post('https://accounts.spotify.com/api/token', params , {headers : headers} )
-         .map(res=> res.json(),console.log(this.encoded));
+         .map((res:Response) =>res.json());
       }
 
     searchMusic(str:string, type:string, token?:string){
@@ -37,14 +43,7 @@ export class SpotifyService{
         headers.append("Authorization","Bearer " + token);
 
         return this._http.get(this.searchUrl, {headers:headers})
-            .map((res:Response) => {
-                res.headers.append("Access-Control-Allow-Origin", "*");
-                res.headers.append("Access-Control-Allow-Methods", "POST,PUT,DELETE,OPTIONS");
-                res.headers.append("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");    
-                res.headers.append("Access-Control-Allow-Credentials", "true");                
-                
-                res.json()
-            });
+            .map((res:Response) =>res.json());
     }
 
     getArtist(artistId:string,token?:string){
