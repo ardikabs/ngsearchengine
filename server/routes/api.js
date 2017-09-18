@@ -34,7 +34,6 @@ router.post('/access_token',function(req,res,next){
     //         console.log("Iki Token Nak Njero-> "+token);
     //     }
     // }).pipe(res);
-    res.json();
 });
 
 module.exports = router;
