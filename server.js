@@ -6,8 +6,6 @@ const request = require('request');
 
 app.use(express.static(__dirname+"/dist"));
 
-app.listen(process.env.PORT || 8080);
-
 app.get('/*', function(req,res){
     res.sendFile(path.join(__dirname + '/dist/index.html'));
 })
@@ -31,10 +29,15 @@ app.post('/getToken',function(req,res){
         if (!error && response.statusCode === 200) {
             // use the access token to access the Spotify Web API
             var token = body.access_token;
-            res.json({'token':token});
+            console.log(token);
+            res.setHeader('Content-Type', 'application/json');
+            res.send(JSON.stringify({'token':token}));
         }
     });
 
 })
+
+app.listen(process.env.PORT || 8080);
+
 
 console.log('Console Listening in '+process.env.PORT || 8080);
