@@ -15,25 +15,24 @@ router.get('/access_token',function(req,res,next){
     var authOptions = {
         url:'https://accounts.spotify.com/api/token',
         headers:{
-            'Authorization': 'Basic '+ (new Buffer(client_id + ':' + client_secret.toString('base64'))),
+            'Authorization': 'Basic Y2E4ZDVlNjBmNzg3NGE3NmI4NDk3OTUzYmYxNmEwYTc6ZjNlNGIwZDgxOTQ0NGRlNjlhNDc4OWZmMjkyOTNjNDY=',
             'Content-Type' : 'application/x-www-form-urlencoded'
         },
         form: {
-            'grant_type': 'client_credentials'
+            grant_type: 'client_credentials'
           },
         json: true
     };
 
-    request.post(authOptions).pipe(res);
-    console.log(res);    
-    // request.post(authOptions, function(error, response, body){
-    //     console.log("Sedang REQUEST ");        
-    //     if (!error && response.statusCode === 200) {
-    //         // use the access token to access the Spotify Web API
-    //         var token = body.access_token;
-    //         console.log("Iki Token Nak Njero-> "+token);
-    //     }
-    // }).pipe(res);
+        
+    request.post(authOptions, function(error, response, body){
+        if (!error && response.statusCode === 200) {
+            // use the access token to access the Spotify Web API
+            var token = body.access_token;
+            console.log(token);
+            res.json({'access_token':token});
+        }
+    });
 });
 
 module.exports = router;
