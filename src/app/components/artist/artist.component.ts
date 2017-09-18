@@ -26,12 +26,21 @@ export class ArtistComponent  implements OnInit{
         this._route.params
             .map(params => params['id'])
             .subscribe((id) =>{
-                this._spotifyService.getArtist(id)
-                    .subscribe(artist =>{
-                        this.artist = artist;
+                this._spotifyService.getToken()
+                    .subscribe(data =>{
+                        this._spotifyService.getArtist(id,data.access_token)
+                            .subscribe(artist =>{
+                                this.artist = artist;
+                            })
+    
+                        this._spotifyService.getAlbums(id,data.access_token)
+                            .subscribe(albums =>{
+                                this.albums = albums.items;
+                            })
+
                     })
+                
             })
-        )
     }
 
 }

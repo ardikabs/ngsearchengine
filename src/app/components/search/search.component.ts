@@ -15,16 +15,16 @@ export class SearchComponent  {
     constructor(private _spotifyService:SpotifyService){}
 
     searchMusic(){
-        // this._spotifyService.getToken()
-        //     .subscribe(res=>{
-        //         this._spotifyService.searchMusic(this.searchStr,'artist',res.access_token)
-        //             .subscribe(res =>{
-        //                 console.log(res.artists.items);
-        //             });
-        //     });
-        this._spotifyService.searchMusic(this.searchStr,'artist')
-        .subscribe(res =>{
-            this.searchRes = res.artists.items;
-        })
+        this._spotifyService.getToken()
+            .subscribe(res=>{
+                this._spotifyService.searchMusic(this.searchStr,'artist',res.access_token)
+                    .subscribe(res =>{
+                        console.log(res.artists.items);
+                    });
+            });
+        // this._spotifyService.searchMusic(this.searchStr,'artist')
+        // .subscribe(res =>{
+        //     this.searchRes = res.artists.items;
+        // })
     }
 }
