@@ -13,7 +13,7 @@ export class SpotifyService{
     private AlbumsUrl:string;
     private AlbumUrl:string;
     private encoded = btoa(this.client_id + ':' + this.client_secret);
-    private base64 = 'OTk2MDgwOTM3ZWJiNDU5NGEwOTc5MTQ2YzljMGMxMjE6MGJkYTNjZmQyMTNjNDYyMmJjNmM1NjI1ODY1NjhlYzg=';
+    private base64 = 'Y2E4ZDVlNjBmNzg3NGE3NmI4NDk3OTUzYmYxNmEwYTc6ZjNlNGIwZDgxOTQ0NGRlNjlhNDc4OWZmMjkyOTNjNDY=';
     constructor(private _http:Http){
 
     }
@@ -23,18 +23,12 @@ export class SpotifyService{
         // let body = params.toString();
          var params = ('grant_type=client_credentials');
  
-         var headers = new Headers();
-         headers.append('Access-Control-Allow-Origin','*');
-         headers.append('Access-Control-Allow-Methods','POST,GET');
-         headers.append('Access-Control-Request-Headers','Content-Type, Authorization');
-         headers.append('Access-Control-Allow-Credentials', 'true');
-         
-        //  headers.append( 'Authorization', 'Basic ' + this.encoded);
-         headers.append( 'Authorization', 'Basic Y2E4ZDVlNjBmNzg3NGE3NmI4NDk3OTUzYmYxNmEwYTc6ZjNlNGIwZDgxOTQ0NGRlNjlhNDc4OWZmMjkyOTNjNDY=');       
+         var headers = new Headers();         
+         headers.append( 'Authorization', 'Basic ' + this.encoded);
          headers.append( 'Content-Type' , 'application/x-www-form-urlencoded');
  
          return this._http.post('https://accounts.spotify.com/api/token', params , {headers : headers} )
-         .map(res=> res.json());
+         .map(res=> res.json(),console.log(this.encoded));
       }
 
     searchMusic(str:string, type:string, token?:string){
@@ -43,7 +37,14 @@ export class SpotifyService{
         headers.append("Authorization","Bearer " + token);
 
         return this._http.get(this.searchUrl, {headers:headers})
-            .map((res:Response) => res.json());
+            .map((res:Response) => {
+                res.headers.append("Access-Control-Allow-Origin", "*");
+                res.headers.append("Access-Control-Allow-Methods", "POST,PUT,DELETE,OPTIONS");
+                res.headers.append("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");    
+                res.headers.append("Access-Control-Allow-Credentials", "true");                
+                
+                res.json()
+            });
     }
 
     getArtist(artistId:string,token?:string){
