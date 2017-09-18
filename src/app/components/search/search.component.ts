@@ -22,9 +22,5 @@ export class SearchComponent  {
                         console.log(res.artists.items);
                     });
             });
-        // this._spotifyService.searchMusic(this.searchStr,'artist')
-        // .subscribe(res =>{
-        //     this.searchRes = res.artists.items;
-        // })
     }
 }

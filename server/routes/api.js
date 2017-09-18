@@ -5,7 +5,6 @@ const path = require('path');
 const request = require('request');
 
 router.get('/',function(req,res){
-    console.log('Masuk API');
     res.send('API Works');
 });
 
@@ -29,7 +28,6 @@ router.get('/access_token',function(req,res,next){
         if (!error && response.statusCode === 200) {
             // use the access token to access the Spotify Web API
             var token = body.access_token;
-            console.log(token);
             res.json({'access_token':token});
         }
     });
