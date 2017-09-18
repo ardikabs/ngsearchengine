@@ -27,6 +27,7 @@ request.post(authOptions, function(error, response, body){
 });
 
 router.get('/',function(req,res){
+    console.log('Masuk API');
     res.send('API Works');
 });
 
