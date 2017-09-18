@@ -21,20 +21,12 @@ export class SpotifyService{
         // let params : URLSearchParams = new URLSearchParams();
         // params.set('grant_type' , 'client_credentials');
         // let body = params.toString();
-         var params = ('grant_type=client_credentials');
- 
-         var headers = new Headers();         
-         headers.append( 'Authorization', 'Basic ' + this.encoded);
-         headers.append( 'Content-Type' , 'application/x-www-form-urlencoded');
- 
-        //  res.headers.append("Access-Control-Allow-Origin", "*");
-        //  res.headers.append("Access-Control-Allow-Methods", "POST,PUT,DELETE,OPTIONS");
-        //  res.headers.append("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");    
-        //  res.headers.append("Access-Control-Allow-Credentials", "true");
-
-         console.log(this.encoded)
-         return this._http.post('https://accounts.spotify.com/api/token', params , {headers : headers} )
-         .map((res:Response) =>res.json());
+         var mainUrl = 'https://ngspotify-wisperlabs.herokuapp.com/getToken';
+         
+         return this._http.get(mainUrl)
+            .map((res:Response) =>res.json());
+         //  return this._http.post('https://accounts.spotify.com/api/token', params , {headers : headers} )
+         //  .map((res:Response) =>res.json());
       }
 
     searchMusic(str:string, type:string, token?:string){
