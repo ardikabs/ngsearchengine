@@ -50,7 +50,7 @@
     "@types/node": "^6.0.46",
     "@types/jasmine": "2.5.36"
   },
-  "engine": {
+  "engines": {
     "node": "6.11.3",
     "npm": "3.10.10"
   },
