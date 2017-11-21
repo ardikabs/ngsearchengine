@@ -67,6 +67,6 @@ export class SpotifyService{
     }
 
     searchQuery(str:String){
-        return this._http.get("http://localhost:5000/api/search?q="+str).map((res:Response)=> res.json())
+        return this._http.get("http://188.166.239.227:5000/api/search?q="+str).map((res:Response)=> res.json())
     }
 }
