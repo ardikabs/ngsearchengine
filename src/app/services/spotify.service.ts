@@ -21,7 +21,8 @@ export class SpotifyService{
         // let params : URLSearchParams = new URLSearchParams();
         // params.set('grant_type' , 'client_credentials');
         // let body = params.toString();
-         var mainUrl = 'https://ngspotify-wisperlabs.herokuapp.com/api/access_token';
+        //  var mainUrl = 'https://ngspotify-wisperlabs.herokuapp.com/api/access_token';
+         var mainUrl = 'http://localhost:3000/api/access_token';
          
          return this._http.get(mainUrl)
             .map((res:Response) =>res.json());
@@ -63,5 +64,9 @@ export class SpotifyService{
 
         return this._http.get(this.AlbumUrl, {headers:headers})
             .map((res:Response) => res.json()); 
+    }
+
+    searchQuery(str:String){
+        return this._http.get("http://localhost:5000/api/search?q="+str).map((res:Response)=> res.json())
     }
 }
