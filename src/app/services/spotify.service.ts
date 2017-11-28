@@ -67,6 +67,6 @@ export class SpotifyService{
     }
 
     searchQuery(str:String){
-        return this._http.get("https://katese.gravicodev.id/api/search?q="+str).map((res:Response)=> res.json())
+        return this._http.get("https://katese.gravicodev.com/api/search?q="+str).map((res:Response)=> res.json())
     }
 }
